@@ -10,7 +10,14 @@ import Firestore from './Firestore';
 const Stack = createNativeStackNavigator();
 
 export default () => {
+     
+    const [userSession, setUserSession] = React.useState();
 
+    React.useEffect(()=> {
+        auth().onAuthStateChanged(user => {
+            setUserSession(!!user);
+        });
+    }, []);
     
 
   
@@ -28,11 +35,15 @@ export default () => {
     return(
        <NavigationContainer>
             <Stack.Navigator >
+                   {!userSession ? (
                    <Stack.Screen name="AuthStack" component={AuthStack} options={{headerShown: false}}/>
+                ): (
                     <Stack.Screen
                         name="Firestore"
                         component={Firestore}
-                        />
+                        
+                    />
+                )} 
             </Stack.Navigator>
             
         </NavigationContainer>

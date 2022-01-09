@@ -22,10 +22,7 @@ const Login = ({navigation}) => {
         navigation.navigate('SignPage');
     }
 
-    function handleSubmit() {
-        navigation.navigate('Firestore');
-    }
-
+    
     async function handleFormSubmit(formValues) {
         try {
             setLoading(true);
@@ -45,12 +42,13 @@ const Login = ({navigation}) => {
        
     }
 
+
     return (
         <SafeAreaView style={styles.container}>
             
             
             <Formik initialValues={initialFormValues} onSubmit={handleFormSubmit}>
-                {({values, handleChange}) =>(
+                {({values, handleChange, handleSubmit}) =>(
                     <>
                         <Input 
                             value={values.usermail}
@@ -62,7 +60,7 @@ const Login = ({navigation}) => {
                             value={values.password}
                             placeholder="şifrenizi giriniz.."
                         />
-                        <Button text="giriş yap" onPress={handleSubmit}  />
+                        <Button text="giriş yap" onPress={handleSubmit} loading= {loading} />
                     </>
                 )}
             </Formik>

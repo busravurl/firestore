@@ -128,6 +128,7 @@ class Firestore extends Component {
         return(
         <SafeAreaView>
             <View>
+                <Button title="token" onPress={this.checkApplicationPermission}/>
                 <Button title="Add random user" onPress={this.addRandomUser} />
                 {this.state.users.map((user,index) => <View key={index}>
                    <Text>Name: {user.name} {user.age}</Text>
