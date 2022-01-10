@@ -2,7 +2,7 @@
  * @format
  */
 
-import {AppRegistry,LogBox} from 'react-native';
+import {AppRegistry,LogBox, Alert} from 'react-native';
 import  Router from './src/Router';
 import {name as appName} from './app.json';
 import messaging from '@react-native-firebase/messaging';
@@ -39,7 +39,7 @@ LogBox.ignoreAllLogs();
 
     messaging().getInitialNotification()
     .then(async(remoteMessage) => {
-      console.log('PostmanData: ', remoteMessage);
+      Alert.alert(JSON.stringify(remoteMessage.data));
   })
         
    
